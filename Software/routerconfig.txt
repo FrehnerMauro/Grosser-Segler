@@ -1,0 +1,25 @@
+https://objects.githubusercontent.com/github-production-release-asset-2e65be/75330320/6d6e7dbd-eb48-4592-9cce-df9d3d38f2d1?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241030%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241030T172500Z&X-Amz-Expires=300&X-Amz-Signature=e9321b4f70d7ca0046719ca27a5d448c153f6fe59182d5683e409be3c5c94b3f&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dmavlink-routerd-glibc-armhf&response-content-type=application%2Foctet-stream
+
+https://github.com/mavlink-router/mavlink-router/releases/download/v4/mavlink-routerd-glibc-armhf
+
+router einbinden:
+sudo ./mavlink-routerd-glibc-armhf  -e "127.0.0.1:14552" -t 0 "127.0.0.1:14551"  "/dev/ttyAMA0:57600"
+
+
+logs erstellen:
+cd /var/lib/ardupilot/logs/
+
+arduplane konfiguration
+
+
+# sudo nano /etc/default/arduplane
+# Default settings for ArduPilot for Linux.
+# The file is sourced by systemd from arduplane.service
+
+#TELEM1="-A udp:192.168.137.1:14550"
+TELEM1="-A udp:127.0.0.1:14551"
+TELEM2="-C /dev/ttyAMA0"
+
+# Options to pass to ArduPilot
+ARDUPILOT_OPTS="$TELEM1"
+
